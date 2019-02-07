@@ -1,5 +1,7 @@
+import datetime
+
 class Item(object):
-    def __init__(self, task, timestamp):
+    def __init__(self, task):
         self.task = task
         self.complete = False
-        self.timestamp = timestamp
+        self.timestamp = datetime.datetime.now()
