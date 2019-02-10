@@ -1,4 +1,5 @@
 import sys
+from item import Item
 
 script, file_name = sys.argv
 
@@ -22,26 +23,46 @@ class Manager(object):
     def complete_item(self, item):
 
         target = open("todos.txt", "r+")
-
         target_list = target.readlines()
 
         index = 0
-        for line in target_list:
-            if item in line:
-                contents = line.split("  ")
-                if tcontents[1] == "False":
-                    contents[1] = 'True'
-                    target_list[index] = f"{contents[0]} {contents[1]} {contents[2]}"
-                    
-                    break
+        self.replace_list()
 
-            index += 1
-        else:
-            print("proccess could not be complete")
-
-        target.truncate(0)
-
-        for line in target_list:
-            target.write(line)
-
+    def remove_item(self, item):
+        target = open("todos.txt", "w")
+        target_list = target.readlines()
         target.close()
+        index = 1
+
+        replace_list()
+
+
+    def run_app(self):
+        choice = ''
+        while choice != 5:
+            print("""
+            what would you like to do?
+            1: view list
+            2: add to list
+            3: change item to complete
+            5: quit
+            """)
+            choice = int(input('> '))
+
+            if choice == 1:
+                manager.print_list()
+                
+            elif choice == 2:
+                choice = input('what would the task be called? ')
+                choice_item = Item(choice)
+                manager.add_to_list(choice_item)
+
+            elif choice == 3:
+                manager.print_list()
+                complete = input('which item would you like to change? ')
+                manager.complete_item(complete)
+                
+            elif choice == 5:
+                break
+
+manager = Manager()
