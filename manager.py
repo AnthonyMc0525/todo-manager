@@ -28,29 +28,21 @@ class Manager(object):
         index = 0
         self.replace_list()
 
-    def remove_item(self, item):
-        target = open("todos.txt", "w")
-        target_list = target.readlines()
-        target.close()
-        index = 1
-
-        replace_list()
-
 
     def run_app(self):
         choice = ''
-        while choice != 5:
+        while choice != 4:
             print("""
             what would you like to do?
             1: view list
             2: add to list
             3: change item to complete
-            5: quit
+            4: quit
             """)
             choice = int(input('> '))
 
             if choice == 1:
-                manager.print_list()
+                Manager().print_list()
                 
             elif choice == 2:
                 choice = input('what would the task be called? ')
@@ -61,8 +53,5 @@ class Manager(object):
                 manager.print_list()
                 complete = input('which item would you like to change? ')
                 manager.complete_item(complete)
-                
-            elif choice == 5:
-                break
 
 manager = Manager()
