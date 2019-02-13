@@ -21,12 +21,28 @@ class Manager(object):
         target.close()
 
     def complete_item(self, item):
-
         target = open("todos.txt", "r+")
-        target_list = target.readlines()
+        document_list = target.readlines()
 
         index = 0
-        self.replace_list()
+        for line in document_list:
+            if item in line:
+                contents = line.split("  ")
+                if contents[1] == "False":
+                    contents[1] = 'True'
+                    document_list[index] = f"{contents[0]} {contents[1]} {contents[2]}"
+                    break
+
+            index += 1
+        else:
+            print('you have already completed it or the item is not in the list. Please check the list to confirm')
+
+        target.truncate(0)
+
+        for line in document_list:
+            target.write(line)
+
+        target.close()
 
 
     def run_app(self):
